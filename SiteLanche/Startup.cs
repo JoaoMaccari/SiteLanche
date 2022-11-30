@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SiteLanche.Context;
+using SiteLanche.Repositories;
+using SiteLanche.Repositories.Interfaces;
 
 namespace SiteLanche;
 
@@ -18,8 +20,10 @@ namespace SiteLanche;
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddTransient<ILancheRepository, LancheRepository>();
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
-            services.AddControllersWithViews();
+        services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
