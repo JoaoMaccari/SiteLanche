@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SiteLanche.Repositories.Interfaces;
+using SiteLanche.ViewModels;
 
 namespace SiteLanche.Controllers {
     public class LancheController : Controller {
@@ -17,15 +18,16 @@ namespace SiteLanche.Controllers {
             ViewData["Data"] = DateTime.Now;
 
             var lanches = _lancheRepository.Lanches;
-
-            
-
             var totalLanches = lanches.Count();
 
             ViewBag.Total = "Total de Lanches";
             ViewBag.TotalLanches = totalLanches;
 
-            return View(lanches);
+            var lancheLidtViewModel = new LancheListViewModel();
+            lancheLidtViewModel.Lanches = _lancheRepository.Lanches;
+            lancheLidtViewModel.CategoriaAtual = "Categoria Atual";
+
+            return View(lancheLidtViewModel);
         }
     }
 }
