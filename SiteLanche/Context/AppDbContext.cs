@@ -15,6 +15,7 @@ namespace SiteLanche.Context {
 
         public DbSet<Lanche> Lanches { get; set; }  
 
-
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItems { get; set; }
+        public object CarrinhoCompraItens { get; internal set; }
     }
 }
